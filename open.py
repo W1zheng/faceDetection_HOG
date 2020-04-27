@@ -20,7 +20,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
 
         self.slot_init()  # 初始化槽函数
         
-        self.faceDetector = fd.FaceDetector("trained_models/nnet/model.h5",w=200,h=200) #初始化人脸检测器
+        self.faceDetector = fd.FaceDetector("trained_models/svm/svm_model.txt",w=200,h=200) #初始化人脸检测器
 
     '''程序界面布局'''
 
@@ -114,7 +114,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         ROI = gray_image[int(h/2)-100:int(h/2)+100,int(w/2)-100:int(w/2)+100]
         
         predict = self.faceDetector.detect(ROI)
-        if np.argmax(predict)==1:
+        if predict==1:
             bgr_image = cv2.rectangle(bgr_image,(int(w/2)-100,int(h/2)-100),(int(w/2)+100,int(h/2)+100),(0,255,0))
         else:
             bgr_image = cv2.rectangle(bgr_image,(int(w/2)-100,int(h/2)-100),(int(w/2)+100,int(h/2)+100),(0,0,255))

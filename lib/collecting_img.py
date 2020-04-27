@@ -20,7 +20,7 @@ def collecting_hog(pos_dir_path,output_path):
     
         img = cv2.imread(pos_dir_path+'/'+pic_name,0)
         img = cv2.resize(img, (200,200),interpolation = cv2.INTER_AREA)
-        hogDescriptor = hog.Hog_descriptor(img,cell_width=16, block_width=3, bin_size=8, block_stride=1)
+        hogDescriptor = hog.Hog_descriptor(img,cell_width=16, block_width=3, bin_size=8, block_stride=1,gamma=2.0)
         
         cur_hog_vec = hogDescriptor.extract()
         
